@@ -5,9 +5,10 @@ type Props = {
   music: ItunesStoreMusic
 }
 
+// TODO: Howler.js みたいなものを使って audio tag をやめる
 export const MusicPlayer: React.FC<Props> = (props) => {
   return (
-    <div className="flex flex-col bg-[#202f61]">
+    <div className="flex flex-col bg-gray-600">
       <div className="flex flex-col pt-1 pb-2">
         <div className="flex justify-left pl-4 text-white text-lg font-bold">
           <a target="_blank" rel="noopener noreferrer" href={props.music.trackViewUrl}>{props.music.trackName}</a>

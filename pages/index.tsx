@@ -10,7 +10,7 @@ import { MusicPlayer } from '../components/music/musicPlayer'
 const Home: NextPage = () => {
   const [musics, updateMusics] = useState<ItunesStoreMusic[]>([])
   const MemoMusicPlayers = useMemo(() => {
-    return musics.map((music) => <MusicPlayer key={music.trackId} music={music} />) 
+    return musics.map((music) => <MusicPlayer key={music.trackId} music={music} />)
   }, [musics])
 
   useEffect(() => {
@@ -33,7 +33,8 @@ const Home: NextPage = () => {
       </Head>
 
       <main className={styles.main}>
-        <div className="gap-y-8">
+        {/* TODO: Slider のようなもので実装する */}
+        <div className="grid gap-y-8">
           {MemoMusicPlayers}
         </div>
       </main>
