@@ -1,4 +1,4 @@
-import type { NextPage } from 'next'
+import type { GetServerSideProps, NextPage } from 'next'
 import Head from 'next/head'
 import { useEffect, useMemo, useState } from 'react'
 import styles from '../styles/Home.module.css'
@@ -7,23 +7,12 @@ import { trackIds } from '../store/trackIds'
 import { ItunesStoreMusic } from '../types/itunesStore'
 import { MusicPlayer } from '../components/music/musicPlayer'
 
-const Home: NextPage = () => {
-  const [musics, updateMusics] = useState<ItunesStoreMusic[]>([])
-  const MemoMusicPlayers = useMemo(() => {
-    return musics.map((music) => <MusicPlayer key={music.trackId} music={music} />)
-  }, [musics])
+type Props = {
+  musics: ItunesStoreMusic[]
+}
 
-  useEffect(() => {
-    Promise.all(
-      trackIds.map((trackId) => {
-        return getMusic(trackId)
-      })
-    ).then(res => {
-      updateMusics([...res])
-    })
-  }, [])
-
-
+const Home: NextPage<Props> = ({ musics }) => {
+  console.log("musics: ", musics)
   return (
     <div className={styles.container}>
       <Head>
@@ -35,11 +24,23 @@ const Home: NextPage = () => {
       <main className={styles.main}>
         {/* TODO: Slider のようなもので実装する */}
         <div className="grid gap-y-8">
-          {MemoMusicPlayers}
+          {musics.map((music) => <MusicPlayer key={music.trackId} music={music} />)}
         </div>
       </main>
     </div>
   )
+}
+
+export const getServerSideProps: GetServerSideProps<Props> = async() => {
+  console.log("getServerSideProps")
+  const responses = await Promise.all(trackIds.map((trackId) => fetch(`https://itunes.apple.com/lookup?id=${trackId}&country=JP`)))
+  const results = await Promise.all(responses.map((response) => response.json()))
+
+  return {
+    props: {
+      musics: results.map((result) => result.results[0])
+    }
+  }
 }
 
 export default Home

@@ -10,6 +10,7 @@ export const MusicPlayer: React.FC<Props> = (props) => {
   return (
     <div className="flex flex-col bg-gray-600">
       <div className="flex flex-col pt-1 pb-2">
+        {/* TODO: リンクなので下線を付ける */}
         <div className="flex justify-left pl-4 text-white text-lg font-bold">
           <a target="_blank" rel="noopener noreferrer" href={props.music.trackViewUrl}>{props.music.trackName}</a>
         </div>
