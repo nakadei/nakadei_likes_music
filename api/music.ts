@@ -1,5 +1,5 @@
 import axios from 'axios'
-import { ItunesStoreMusic } from '../types/itunesStore'
+import { ItunesStoreMusic } from '../types'
 
 
 // NOTE: cors の関係で使わなくなった

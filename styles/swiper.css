@@ -1,0 +1,14 @@
+.swiper {
+  max-width: 1600px;
+  max-height: 640px;
+}
+
+.swiper-slide {
+  width: auto;
+  height: auto;
+}
+
+.swiper-pagination {
+  position: relative !important;
+  margin-top: 20px !important;
+}

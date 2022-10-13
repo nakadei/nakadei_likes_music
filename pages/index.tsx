@@ -1,16 +1,18 @@
-import type { GetServerSideProps, NextPage } from 'next'
+import type { GetStaticProps , NextPage } from 'next'
 import Head from 'next/head'
 import styles from '../styles/Home.module.css'
 import { trackIds } from '../store/trackIds'
-import { ItunesStoreMusic } from '../types/itunesStore'
+import { ItunesStoreMusic } from '../types'
 import { MusicPlayer } from '../components/music/musicPlayer'
+import { MusicSwiper } from '../partials/musicSwiper'
+import { Swiper, SwiperSlide } from 'swiper/react' //カルーセル用のタグをインポート
+import SwiperCore, { Pagination, Navigation } from 'swiper' //使いたい機能をインポート
 
 type Props = {
   musics: ItunesStoreMusic[]
 }
 
 const Home: NextPage<Props> = ({ musics }) => {
-  console.log("musics: ", musics)
   return (
     <div className={styles.container}>
       <Head>
@@ -20,17 +22,13 @@ const Home: NextPage<Props> = ({ musics }) => {
       </Head>
 
       <main className={styles.main}>
-        {/* TODO: Slider のようなもので実装する */}
-        <div className="grid gap-y-8">
-          {musics.map((music) => <MusicPlayer key={music.trackId} music={music} />)}
-        </div>
+        <MusicSwiper musics={musics} />
       </main>
     </div>
   )
 }
 
-export const getServerSideProps: GetServerSideProps<Props> = async() => {
-  console.log("getServerSideProps")
+export const getStaticProps : GetStaticProps<Props> = async() => {
   const responses = await Promise.all(trackIds.map((trackId) => fetch(`https://itunes.apple.com/lookup?id=${trackId}&country=JP`)))
   const results = await Promise.all(responses.map((response) => response.json()))
 
