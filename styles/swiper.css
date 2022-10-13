@@ -1,11 +1,17 @@
 .swiper {
-  max-width: 1600px;
-  max-height: 640px;
+  max-width: 960px;
+  max-height: 1080px;
 }
+
 
 .swiper-slide {
   width: auto;
   height: auto;
+}
+
+.swiper-container {
+  width: 100%;
+  height: 100%;
 }
 
 .swiper-pagination {
