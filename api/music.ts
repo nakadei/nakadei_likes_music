@@ -1,6 +1,8 @@
 import axios from 'axios'
 import { ItunesStoreMusic } from '../types/itunesStore'
 
+
+// NOTE: cors の関係で使わなくなった
 export async function getMusic(trackId: string): Promise<ItunesStoreMusic> {
   const url = `https://itunes.apple.com/lookup?id=${trackId}&country=JP`
   // NOTE: 古いURLっぽい

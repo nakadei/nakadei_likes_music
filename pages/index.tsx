@@ -1,8 +1,6 @@
 import type { GetServerSideProps, NextPage } from 'next'
 import Head from 'next/head'
-import { useEffect, useMemo, useState } from 'react'
 import styles from '../styles/Home.module.css'
-import { getMusic } from '../api/music'
 import { trackIds } from '../store/trackIds'
 import { ItunesStoreMusic } from '../types/itunesStore'
 import { MusicPlayer } from '../components/music/musicPlayer'
