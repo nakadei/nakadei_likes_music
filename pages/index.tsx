@@ -10,6 +10,7 @@ type Props = {
 }
 
 const Home: NextPage<Props> = ({ musics }) => {
+  console.log('musics: ', musics)
   return (
     <div className={styles.container}>
       <Head>
