@@ -1,4 +1,4 @@
-import type { GetStaticProps , NextPage } from 'next'
+import type { GetServerSideProps , NextPage } from 'next'
 import Head from 'next/head'
 import styles from '../styles/Home.module.css'
 import { ItunesStoreMusic } from '../types'
@@ -25,7 +25,7 @@ const Home: NextPage<Props> = ({ musics }) => {
   )
 }
 
-export const getStaticProps : GetStaticProps<Props> = async() => {
+export const getServerSideProps : GetServerSideProps<Props> = async() => {
   const result = await getTrackIdsRandom()
   return {
     props: {
