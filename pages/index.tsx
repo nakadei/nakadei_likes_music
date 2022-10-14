@@ -1,10 +1,9 @@
 import type { GetStaticProps , NextPage } from 'next'
 import Head from 'next/head'
 import styles from '../styles/Home.module.css'
-import { trackIds } from '../store/trackIds'
 import { ItunesStoreMusic } from '../types'
 import { MusicSwiper } from '../partials/musicSwiper'
-import { getItunesMusics } from '../features/itunesMusics'
+import { getItunesMusics, getTrackIdsRandom } from '../features/itunesMusics'
 
 type Props = {
   musics: ItunesStoreMusic[]
@@ -27,9 +26,10 @@ const Home: NextPage<Props> = ({ musics }) => {
 }
 
 export const getStaticProps : GetStaticProps<Props> = async() => {
+  const result = await getTrackIdsRandom()
   return {
     props: {
-      musics: await getItunesMusics(trackIds)
+      musics: await getItunesMusics(result)
     }
   }
 }

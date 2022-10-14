@@ -24,12 +24,6 @@ export const MusicSwiper: React.FC<Props> = ({ musics }) => {
       modules={[EffectCoverflow]}
       effect={'coverflow'}
       centeredSlides={true}
-      // breakpoints={{
-      //   400: {
-      //     slidesPerView: 3,
-      //     direction: 'horizontal',
-      //   }
-      // }}
     >
       {
         musics.map((music) => {
