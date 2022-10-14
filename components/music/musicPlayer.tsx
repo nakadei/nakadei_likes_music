@@ -19,8 +19,8 @@ export const MusicPlayer: React.FC<Props> = (props) => {
       </div>
       <div className="flex justify-center">
         <picture>
-          <source srcSet={replaceArtworkQualityUrl(props.music.artworkUrl100)} type="image/webp" />
-          <img className="w-[300px]"
+          <source srcSet={replaceArtworkQualityUrl(props.music.artworkUrl100)} type="image/webp" className="w-[300px] h-[300px]" />
+          <img className="w-[300px] h-[300px]"
             src={replaceArtworkQualityUrl(props.music.artworkUrl100)}
             alt={props.music.trackName}
           ></img>
