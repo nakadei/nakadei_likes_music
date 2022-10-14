@@ -13,7 +13,7 @@ export const MusicPlayer: React.FC<Props> = (props) => {
         <div className="flex justify-left pl-4 text-white text-lg font-bold underline">
           <a target="_blank" rel="noopener noreferrer" href={props.music.trackViewUrl}>{props.music.trackName}</a>
         </div>
-        <div className="flex justify-left pl-4 text-white text-xs underline">
+        <div className="flex justify-left pl-4 text-white text-xs">
           <a target="_blank" rel="noopener noreferrer" href={props.music.artistViewUrl}>{props.music.artistName}</a>
         </div>
       </div>
